@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,7 @@ import Products from "./pages/Products";
 import Warehouses from "./pages/Warehouses";
 import Stock from "./pages/Stock";
 import StockTransfer from "./pages/StockTransfer";
+import Users from "./pages/Users";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -103,6 +103,15 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute requiredRoles={["admin", "warehouseManager"]}>
             <StockTransfer />
+          </ProtectedRoute>
+        }
+      />
+      
+      <Route
+        path="/users"
+        element={
+          <ProtectedRoute requiredRoles={["admin"]}>
+            <Users />
           </ProtectedRoute>
         }
       />

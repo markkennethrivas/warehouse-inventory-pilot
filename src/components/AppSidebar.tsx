@@ -13,7 +13,7 @@ import {
   SidebarMenuButton,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Boxes, Building2, LineChart, Package, FileCheck, Users2, Settings } from "lucide-react";
+import { Boxes, Building2, LineChart, Package, FileCheck, Users, Settings } from "lucide-react";
 
 export function AppSidebar() {
   const { user, logout } = useAuth();
@@ -52,7 +52,7 @@ export function AppSidebar() {
     },
     {
       title: "Users",
-      icon: Users2,
+      icon: Users,
       href: "/users",
       roles: ["admin"],
     },

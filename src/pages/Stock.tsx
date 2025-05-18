@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getStocksWithDetails } from "@/services/stockService";
@@ -162,7 +161,7 @@ const StockPage = () => {
                           {isOutOfStock ? (
                             <Badge variant="destructive">Out of Stock</Badge>
                           ) : isLowStock ? (
-                            <Badge variant="warning" className="bg-warning text-warning-foreground">Low Stock</Badge>
+                            <Badge variant="default" className="bg-warning text-warning-foreground">Low Stock</Badge>
                           ) : (
                             <Badge variant="outline" className="bg-success/10 text-success border-success/20">In Stock</Badge>
                           )}
