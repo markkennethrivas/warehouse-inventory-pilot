@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +13,7 @@ import Warehouses from "./pages/Warehouses";
 import Stock from "./pages/Stock";
 import StockTransfer from "./pages/StockTransfer";
 import Users from "./pages/Users";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -112,6 +114,15 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute requiredRoles={["admin"]}>
             <Users />
+          </ProtectedRoute>
+        }
+      />
+      
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute requiredRoles={["admin"]}>
+            <Settings />
           </ProtectedRoute>
         }
       />
