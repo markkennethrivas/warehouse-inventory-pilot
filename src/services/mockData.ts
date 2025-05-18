@@ -1,0 +1,288 @@
+
+import { Product, Warehouse, Stock, StockMovement, User, Supplier } from "../types";
+
+// Mock Users
+export const mockUsers: User[] = [
+  {
+    id: "1",
+    name: "Admin User",
+    email: "admin@example.com",
+    role: "admin",
+  },
+  {
+    id: "2",
+    name: "Warehouse Manager",
+    email: "manager@example.com",
+    role: "warehouseManager",
+  },
+  {
+    id: "3",
+    name: "Staff Member",
+    email: "staff@example.com",
+    role: "staff",
+  },
+];
+
+// Mock Products
+export const mockProducts: Product[] = [
+  {
+    id: "p1",
+    name: "Ergonomic Office Chair",
+    sku: "CHAIR-001",
+    description: "Adjustable office chair with lumbar support",
+    category: "Furniture",
+    supplier: "Office Solutions Inc.",
+    costPrice: 149.99,
+    sellingPrice: 249.99,
+    minStockThreshold: 10,
+    createdAt: "2023-08-15T10:30:00Z",
+    updatedAt: "2023-08-15T10:30:00Z",
+  },
+  {
+    id: "p2",
+    name: "Wireless Keyboard",
+    sku: "KB-002",
+    description: "Bluetooth wireless keyboard with long battery life",
+    category: "Electronics",
+    supplier: "Tech Gear Ltd.",
+    costPrice: 35.00,
+    sellingPrice: 59.99,
+    minStockThreshold: 20,
+    createdAt: "2023-09-05T14:20:00Z",
+    updatedAt: "2023-09-05T14:20:00Z",
+  },
+  {
+    id: "p3",
+    name: "Desk Lamp",
+    sku: "LAMP-003",
+    description: "LED desk lamp with adjustable brightness",
+    category: "Lighting",
+    supplier: "LuminaTech",
+    costPrice: 24.99,
+    sellingPrice: 39.99,
+    minStockThreshold: 15,
+    createdAt: "2023-09-10T09:15:00Z",
+    updatedAt: "2023-09-10T09:15:00Z",
+  },
+  {
+    id: "p4",
+    name: "Laser Printer",
+    sku: "PRINT-004",
+    description: "High-speed black and white laser printer",
+    category: "Electronics",
+    supplier: "Tech Gear Ltd.",
+    costPrice: 199.99,
+    sellingPrice: 299.99,
+    minStockThreshold: 5,
+    createdAt: "2023-09-15T11:45:00Z",
+    updatedAt: "2023-09-15T11:45:00Z",
+  },
+  {
+    id: "p5",
+    name: "Notebook Set",
+    sku: "NB-005",
+    description: "Set of 3 premium hardcover notebooks",
+    category: "Stationery",
+    supplier: "Paper Works Co.",
+    costPrice: 12.50,
+    sellingPrice: 24.99,
+    minStockThreshold: 30,
+    createdAt: "2023-09-20T16:10:00Z",
+    updatedAt: "2023-09-20T16:10:00Z",
+  },
+  {
+    id: "p6",
+    name: "Monitor Stand",
+    sku: "STAND-006",
+    description: "Adjustable monitor stand with cable management",
+    category: "Accessories",
+    supplier: "Office Solutions Inc.",
+    costPrice: 45.00,
+    sellingPrice: 69.99,
+    minStockThreshold: 12,
+    createdAt: "2023-10-02T13:25:00Z",
+    updatedAt: "2023-10-02T13:25:00Z",
+  },
+];
+
+// Mock Warehouses
+export const mockWarehouses: Warehouse[] = [
+  {
+    id: "w1",
+    name: "Main Distribution Center",
+    location: "Chicago, IL",
+    capacity: 5000,
+    createdAt: "2023-01-01T00:00:00Z",
+    updatedAt: "2023-01-01T00:00:00Z",
+  },
+  {
+    id: "w2",
+    name: "East Coast Warehouse",
+    location: "New York, NY",
+    capacity: 3500,
+    createdAt: "2023-02-15T00:00:00Z",
+    updatedAt: "2023-02-15T00:00:00Z",
+  },
+  {
+    id: "w3",
+    name: "West Coast Warehouse",
+    location: "Los Angeles, CA",
+    capacity: 4200,
+    createdAt: "2023-03-10T00:00:00Z",
+    updatedAt: "2023-03-10T00:00:00Z",
+  },
+];
+
+// Mock Stock
+export const mockStocks: Stock[] = [
+  {
+    id: "s1",
+    productId: "p1",
+    warehouseId: "w1",
+    quantity: 25,
+    lastUpdated: "2023-10-10T09:00:00Z",
+  },
+  {
+    id: "s2",
+    productId: "p1",
+    warehouseId: "w2",
+    quantity: 15,
+    lastUpdated: "2023-10-09T14:30:00Z",
+  },
+  {
+    id: "s3",
+    productId: "p2",
+    warehouseId: "w1",
+    quantity: 40,
+    lastUpdated: "2023-10-08T11:15:00Z",
+  },
+  {
+    id: "s4",
+    productId: "p2",
+    warehouseId: "w3",
+    quantity: 30,
+    lastUpdated: "2023-10-07T16:45:00Z",
+  },
+  {
+    id: "s5",
+    productId: "p3",
+    warehouseId: "w2",
+    quantity: 18,
+    lastUpdated: "2023-10-10T10:20:00Z",
+  },
+  {
+    id: "s6",
+    productId: "p3",
+    warehouseId: "w3",
+    quantity: 12,
+    lastUpdated: "2023-10-09T13:10:00Z",
+  },
+  {
+    id: "s7",
+    productId: "p4",
+    warehouseId: "w1",
+    quantity: 8,
+    lastUpdated: "2023-10-08T15:30:00Z",
+  },
+  {
+    id: "s8",
+    productId: "p5",
+    warehouseId: "w2",
+    quantity: 45,
+    lastUpdated: "2023-10-07T09:45:00Z",
+  },
+  {
+    id: "s9",
+    productId: "p6",
+    warehouseId: "w3",
+    quantity: 9,
+    lastUpdated: "2023-10-05T14:20:00Z",
+  },
+  {
+    id: "s10",
+    productId: "p4",
+    warehouseId: "w3",
+    quantity: 3,
+    lastUpdated: "2023-10-06T11:10:00Z",
+  },
+];
+
+// Mock Stock Movements
+export const mockStockMovements: StockMovement[] = [
+  {
+    id: "m1",
+    productId: "p1",
+    quantity: 10,
+    sourceWarehouseId: "w1",
+    destinationWarehouseId: "w2",
+    status: "completed",
+    movementDate: "2023-09-28T10:30:00Z",
+    updatedAt: "2023-09-28T14:15:00Z",
+  },
+  {
+    id: "m2",
+    productId: "p2",
+    quantity: 15,
+    sourceWarehouseId: "w3",
+    destinationWarehouseId: "w1",
+    status: "completed",
+    movementDate: "2023-09-29T09:45:00Z",
+    updatedAt: "2023-09-29T15:30:00Z",
+  },
+  {
+    id: "m3",
+    productId: "p3",
+    quantity: 8,
+    sourceWarehouseId: "w2",
+    destinationWarehouseId: "w3",
+    status: "inTransit",
+    movementDate: "2023-10-10T08:20:00Z",
+    updatedAt: "2023-10-10T08:20:00Z",
+  },
+  {
+    id: "m4",
+    productId: "p5",
+    quantity: 20,
+    sourceWarehouseId: "w2",
+    destinationWarehouseId: "w1",
+    status: "pending",
+    movementDate: "2023-10-11T09:00:00Z",
+    updatedAt: "2023-10-11T09:00:00Z",
+  },
+];
+
+// Mock Suppliers
+export const mockSuppliers: Supplier[] = [
+  {
+    id: "sup1",
+    name: "Office Solutions Inc.",
+    contactPerson: "Jane Smith",
+    email: "jane@officesolutions.com",
+    phone: "555-123-4567",
+    address: "123 Business Ave, Chicago, IL 60601",
+  },
+  {
+    id: "sup2",
+    name: "Tech Gear Ltd.",
+    contactPerson: "Mike Johnson",
+    email: "mike@techgear.com",
+    phone: "555-987-6543",
+    address: "456 Tech Blvd, San Francisco, CA 94105",
+  },
+  {
+    id: "sup3",
+    name: "LuminaTech",
+    contactPerson: "Sarah Wilson",
+    email: "sarah@luminatech.com",
+    phone: "555-456-7890",
+    address: "789 Lighting Way, Boston, MA 02110",
+  },
+  {
+    id: "sup4",
+    name: "Paper Works Co.",
+    contactPerson: "David Brown",
+    email: "david@paperworks.com",
+    phone: "555-234-5678",
+    address: "321 Stationery St, Portland, OR 97205",
+  },
+];
